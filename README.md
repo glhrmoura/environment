@@ -28,7 +28,7 @@ $ npm install @glhrmoura/environment
 
 #### Basic
 
-The library is quite simple to use, we just need to import and call a configuration function:
+The library is quite simple to use, we just need to import and call a configuration function. The configuration will look for a `.env` file at the same level as the file calling it.
 
 ```jsx
 import { config } from '@glhrmoura/environment';
@@ -36,14 +36,24 @@ import { config } from '@glhrmoura/environment';
 config();
 ```
 
-#### Passing `path` property
+#### Passing `envPath` property
 
-There's also the option to provide a custom path to the file. If no `path` is provided, an .environment file will be searched for in the project's root:
+The `envPath` property refers to the path of the `.env` file:
 
 ```jsx
 import { config } from '@glhrmoura/environment';
 
-config({ path: '/path/envFile' });
+config({ envPath: '/path/envFile' });
+```
+
+#### Passing `envPath` as a list
+
+The `envPath` property can also be in the form of a list, receiving multiple paths for different files:
+
+```jsx
+import { config } from '@glhrmoura/environment';
+
+config({ envPath: ['/path/envFileDev', '/path/envFileProd'] });
 ```
 
 ### License
