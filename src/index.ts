@@ -2,26 +2,39 @@ import { readFileSync } from 'fs';
 
 import { Utils } from '@/utils';
 
-interface Props {
-  path?: string;
+interface Config {
+  envPath?: string | string[];
 }
 
-export const config = ({ path = '' }: Props = {}) => {
-  try {
-    const envPath = path || './.env';
-    const envFile = readFileSync(envPath);
+const getVariables = (envFile: Buffer): { [key: string]: string } => {
+  return String(envFile).split(/\n/).reduce((acc, env) => {
+    if (!env || env.startsWith('#')) return acc;
+    const [key, value] = env.split('=');
+    return { ...acc, [Utils.clearstr(key)]: Utils.clearstr(value) };
+  }, {});
+}
 
-    const customEnv = String(envFile).split(/\n/).reduce((acc, env) => {
-      if (!env || env.startsWith('#')) return acc;
-      const [key, value] = env.split('=');
-      return { ...acc, [Utils.clearstr(key)]: Utils.clearstr(value) };
-    }, {});
+export const config = ({ envPath }: Config = {}) => {
+  try {
+    let variables = {};
+    const path = envPath?.length ? envPath : './.env';
+
+    if (typeof path === 'string') {
+      variables = getVariables(readFileSync(path))
+    } else if (Array.isArray(path)) {
+      path.forEach((path) => {
+        variables = {
+          ...variables,
+          ...getVariables(readFileSync(path))
+        };
+      });
+    }
 
     process.env = {
       ...process.env,
-      ...customEnv,
+      ...variables
     };
   } catch (error) {
-    console.log('[@glhrmoura/env]', error);
+    console.log('[@glhrmoura/environment]', error);
   }
 }
