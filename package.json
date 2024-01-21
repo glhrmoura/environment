@@ -1,6 +1,6 @@
 {
   "name": "@glhrmoura/environment",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "An efficient Node library for managing and setting environment variables.",
   "main": "./dist/index.js",
   "author": "Guilherme Moura <mouraggui@gmail.com>",
@@ -8,7 +8,7 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glhrmoura/env.git"
+    "url": "git+https://github.com/glhrmoura/environment.git"
   },
   "publishConfig": {
     "access": "public",
