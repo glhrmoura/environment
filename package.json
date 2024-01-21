@@ -1,6 +1,6 @@
 {
   "name": "@glhrmoura/environment",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An efficient Node library for managing and setting environment variables.",
   "main": "./dist/index.js",
   "author": "Guilherme Moura <mouraggui@gmail.com>",
