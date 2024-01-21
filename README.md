@@ -1,7 +1,7 @@
 <p align="center">
   <img
-		style="object: contain; height: 150px"
-		src="https://raw.githubusercontent.com/glhrmoura/environment/main/src/static/images/logo.png"
+	style="object: contain; height: 150px"
+	src="https://cdn-icons-png.flaticon.com/512/4337/4337703.png"
 	/>
 </p>
 
